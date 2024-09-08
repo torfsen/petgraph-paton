@@ -101,67 +101,6 @@ where
     }
 }
 
-/*
-fn get_ancestors<Ix>(
-    anc: &HashMap<NodeIndex<Ix>, NodeIndex<Ix>>,
-    n: NodeIndex<Ix>,
-) -> Vec<NodeIndex<Ix>>
-where
-    Ix: IndexType + Debug,
-{
-    let mut n = n;
-    let mut ancestors = Vec::new();
-    while let Some(&n_anc) = anc.get(&n) {
-        let n_anc = n_anc.clone();
-        ancestors.push(n_anc.clone());
-        n = n_anc;
-    }
-    ancestors
-}
-
-fn find_path_in_tree<Ix>(
-    anc: &HashMap<NodeIndex<Ix>, NodeIndex<Ix>>,
-    start: NodeIndex<Ix>,
-    end: NodeIndex<Ix>,
-) -> Vec<NodeIndex<Ix>>
-where
-    Ix: IndexType + Debug,
-{
-    let mut start_ancestors = get_ancestors(anc, start);
-    let mut end_ancestors = get_ancestors(anc, end);
-    //dbg!(&start_ancestors, &end_ancestors);
-    let mut path = vec![start];
-    let mut last_common_ancestor = None;
-    let mut start_ancestor;
-    let mut end_ancestor;
-    loop {
-        start_ancestor = start_ancestors.pop();
-        end_ancestor = end_ancestors.pop();
-        assert!(!(start_ancestor.is_none() && end_ancestor.is_none()));
-        if start_ancestor != end_ancestor {
-            break;
-        }
-        last_common_ancestor = start_ancestor;
-        //println!("Common ancestor: {start_ancestor:?}");
-    }
-    if let Some(start_ancestor) = start_ancestor {
-        //dbg!(&start_ancestors, &start_ancestor);
-        path.extend(start_ancestors.into_iter());
-        path.push(start_ancestor);
-    }
-    if let Some(last_common_ancestor) = last_common_ancestor {
-        path.push(last_common_ancestor);
-    }
-    if let Some(end_ancestor) = end_ancestor {
-        //dbg!(&end_ancestors, &end_ancestor);
-        path.extend(end_ancestors.into_iter().rev());
-        path.push(end_ancestor);
-    }
-    path.push(end);
-    path
-}
-*/
-
 fn find_fundamental_set_of_cycles<N, E, Ix>(g: &mut UnGraph<N, E, Ix>) -> Vec<Vec<NodeIndex<Ix>>>
 where
     Ix: IndexType + Debug,
